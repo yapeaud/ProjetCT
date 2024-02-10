@@ -108,7 +108,7 @@ class EtudiantController extends Controller
         
     $request->validate([
         'title' => 'required|string|max:255',
-        'file' => 'required|mimes:docx,xlsx,pptx,pdf|max:10000000'
+        'file' => 'required|mimes:docx,xlsx,pptx,sgl,pdf|max:10000000'
       ]);
 
       $title = $request->input('title');

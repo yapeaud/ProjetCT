@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TuteurController;
 use App\Http\Controllers\EtudiantController;
 
 /*
@@ -37,3 +38,27 @@ Route::post('/etudiant/dashboard/evalue/tuteur', [EtudiantController::class, 'tr
 Route::get('/etudiant/dashboard/rapport', [EtudiantController::class, 'etudiantRapport'])->name('etudiantRapport');
 Route::post('/etudiant/dashboard/rapport', [EtudiantController::class, 'traitementEtudiantRapport'])->name('traitementEtudiantRapport');
 
+/* ---------- TUTEURS ----------- */
+Route::get('/tuteur/connexion', [TuteurController::class, 'index'])->name('connexion');
+Route::get('/tuteur/inscription', [TuteurController::class,'inscription'])->name('inscription');
+Route::post('/tuteur/inscription', [TuteurController::class,'traitementInscriptionTuteur'])->name('traitementInscriptionTuteur');
+Route::get('/tuteur/liste', [TuteurController::class, 'listeTuteur'])->name('listeTiteur');
+Route::get('/tuteur/dashboard', [TuteurController::class, 'tuteurDasboard'])->name('tuteurDasboard');
+
+#Le tuteur évalue ses étudiants
+Route::get('/tuteur/dashboard/evalue/etudiant', [TuteurController::class, 'tuteurEvalueEtudiant'])->name('tuteurEvalueEtudiant');
+Route::post('/tuteur/dashboard/evalue/etudiant', [TuteurController::class, 'traitementTuteurEvalueEtudiant'])->name('traitementTuteurEvalueEtudiant');
+
+#Le tuteur crée un groupe
+Route::get('/tuteur/dashboard/groupe', [TuteurController::class, 'tuteurCreeGroupe'])->name('tuteurCreeGroupe');
+Route::post('/tuteur/dashboard/groupe', [TuteurController::class, 'traitementTuteurCreeGroupe'])->name('traitementTuteurCreeGroupe');
+
+#Le tuteur attribue un rôle
+Route::get('/tuteur/dashboard/groupe/role', [TuteurController::class, 'tuteurAttribueRole'])->name('tuteurAttribueRole');
+Route::post('/tuteur/dashboard/groupe/role', [TuteurController::class, 'traitementTuteurAttribueRole'])->name('traitementTuteurAttribueRole');
+
+#Le tuteur dépose un rapport
+Route::get('/tuteur/dashboard/rapport', [TuteurController::class, 'tuteurRapport'])->name('tuteurRapport');
+Route::post('/tuteur/dashboard/rapport', [TuteurController::class, 'traitementTuteurRapport'])->name('traitementTuteurRapport');
+
+/* ---------- RESPONSABLE DU SERVICE STAGE ET EMPLOI ----------- */

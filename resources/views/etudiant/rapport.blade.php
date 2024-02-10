@@ -25,7 +25,7 @@
 
                     <div class="form-group">
                         <label for="file">Sélectionnez un fichier :</label>
-                        <input type="file" name="file" class="form-control-file" accept=".docx, .xlsx, .pptx, .pdf">
+                        <input type="file" name="file" class="form-control-file" accept=".docx, .xlsx, .pptx, .sql, .pdf">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Déposer le rapport</button>
