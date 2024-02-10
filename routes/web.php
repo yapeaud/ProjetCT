@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TuteurController;
 use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\InternshipController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,3 +63,16 @@ Route::get('/tuteur/dashboard/rapport', [TuteurController::class, 'tuteurRapport
 Route::post('/tuteur/dashboard/rapport', [TuteurController::class, 'traitementTuteurRapport'])->name('traitementTuteurRapport');
 
 /* ---------- RESPONSABLE DU SERVICE STAGE ET EMPLOI ----------- */
+Route::get('/internship/connexion', [InternshipController::class, 'index'])->name('connexion');
+Route::get('/internship/inscription', [InternshipController::class,'inscription'])->name('inscription');
+Route::post('/internship/inscription', [InternshipController::class,'traitementInscriptionInternship'])->name('traitementInscriptionInternship');
+Route::get('/internship/liste', [InternshipController::class, 'listeInternship'])->name('listeInternship');
+Route::get('/internship/dashboard', [InternshipController::class, 'internshipDashboard'])->name('internshipDashboard');
+
+#L'internship note le tuteur
+Route::get('/internship/dashboard/note', [InternshipController::class, 'internshipNoteTuteur'])->name('internshipNoteTuteur');
+Route::post('/internship/dashboard/note', [InternshipController::class, 'traitementInternshipNoteTuteur'])->name('traitementInternshipNoteTuteur');
+
+#Gestion du tuteur par le responsable du service stage et emploi
+Route::get('/internship/dashboard/gere', [InternshipController::class, 'internshipGereTuteur'])->name('internshipGereTuteur');
+Route::post('/internship/dashboard/gere', [InternshipController::class, 'traitementInternshipGereTuteur'])->name('traitementInternshipGereTuteur');
