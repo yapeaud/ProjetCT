@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\InternshipGereTuteur;
 use App\Models\InternshipNoteTuteur;
 use Illuminate\Support\Facades\Hash;
+use App\Models\InternshipAttribueEtudiant;
 
 class InternshipController extends Controller
 {
@@ -97,5 +98,27 @@ $request->validate([
   $internship_gere_tuteur->specialite	= $request->input('specialite');
   $internship_gere_tuteur->save();
   return back()->with("successAdd", "Soumission reçue!");
+  }
+
+  public function internshipAttribueEtudiant()
+  {
+    $internship_attribue_etudiants = InternshipAttribueEtudiant::all();
+    return view('internship.attribue', compact('internship_attribue_etudiants'));
+  }
+  
+  public function traitementInternshipAttribueEtudiant(Request $request)
+  {
+// Validation des données
+$request->validate([
+  'tutorname' => 'required|string|max:255',
+  'studentname' => 'required|string|max:255',
+  
+]);
+
+$internship_attribue_etudiant = New InternshipAttribueEtudiant;
+$internship_attribue_etudiant->nom_du_tuteur = $request->input('tutorname');
+$internship_attribue_etudiant->nom_de_l_etudiant = $request->input('studentname');
+ $internship_attribue_etudiant->save();
+ return back()->with("successAdd", "Soumission reçue!");
   }
 }

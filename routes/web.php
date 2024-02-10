@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TuteurController;
 use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\PedagogieController;
 use App\Http\Controllers\InternshipController;
 
 /*
@@ -76,3 +77,24 @@ Route::post('/internship/dashboard/note', [InternshipController::class, 'traitem
 #Gestion du tuteur par le responsable du service stage et emploi
 Route::get('/internship/dashboard/gere', [InternshipController::class, 'internshipGereTuteur'])->name('internshipGereTuteur');
 Route::post('/internship/dashboard/gere', [InternshipController::class, 'traitementInternshipGereTuteur'])->name('traitementInternshipGereTuteur');
+
+#Attribution des rôles par le responsable du service stage et emploi
+Route::get('/internship/dashboard/attribue', [InternshipController::class, 'internshipAttribueEtudiant'])->name('internshipAttribueEtudiant');
+Route::post('/internship/dashboard/attribue', [InternshipController::class, 'traitementInternshipAttribueEtudiant'])->name('traitementInternshipAttribueEtudiant');
+
+
+/* ---------- RESPONSABLE DE LA PÉDAGOGIE ----------- */
+Route::get('/pedagogie/connexion', [PedagogieController::class, 'index'])->name('connexion');
+Route::get('/pedagogie/inscription', [PedagogieController::class,'inscription'])->name('inscription');
+Route::post('/pedagogie/inscription', [PedagogieController::class,'traitementInscriptionPedagogie'])->name('traitementInscriptionPedagogie');
+
+Route::get('/pedagogie/liste', [PedagogieController::class, 'listePedagogie'])->name('listePedagogie');
+
+Route::get('/pedagogie/dashboard', [PedagogieController::class, 'pedagogieDashboard'])->name('pedagogieDashboard');
+
+
+Route::get('/pedagogie/dasboard/catégorie', [PedagogieController::class, 'catégoriePedagogie'])->name('catégoriePedagogie');
+Route::get('/pedagogie/dasboard/grille/etudiant', [PedagogieController::class, 'grilleEvaluationEtudiantParTuteur'])->name('grilleEvaluationEtudiantParTuteur');
+Route::get('/pedagogie/dasboard/grille/tuteur', [PedagogieController::class, 'grilleEvaluationTuteurParEtudiant'])->name('grilleEvaluationTuteurParEtudiant');
+Route::get('/pedagogie/dasboard/grille/admin', [PedagogieController::class, 'grilleEvaluationTuteurParAdmin'])->name('grilleEvaluationTuteurParAdmin');
+Route::get('/pedagogie/dasboard/grille/groupe', [PedagogieController::class, 'grilleEvaluationTuteurParGroupe'])->name('grilleEvaluationTuteurParGroupe');

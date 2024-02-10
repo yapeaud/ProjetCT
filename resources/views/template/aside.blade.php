@@ -14,7 +14,7 @@
         <div id="main-menu" class="main-menu collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active">
-                    <a href="./"> <i class="menu-icon fa fa-dashboard"></i>Tableau de bord </a>
+                    <a href=""> <i class="menu-icon fa fa-dashboard"></i>Tableau de bord </a>
                 </li>
 
                 <h3 class="menu-title">Étudiants</h3><!-- /.menu-title -->
