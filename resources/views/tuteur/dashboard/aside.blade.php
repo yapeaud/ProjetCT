@@ -26,6 +26,7 @@
                 <li class="menu-item">
                     <a href="/tuteur/dashboard/groupe"> <i class="menu-icon fa fa-laptop"></i>Créer un groupe</a>
                     <a href="/tuteur/dashboard/groupe/role"> <i class="menu-icon fa fa-laptop"></i>Attribution de rôle</a>
+                    <a href="/tuteur/liste"> <i class="menu-icon fa fa-laptop"></i>Liste des tuteurs</a>
                 </li>
 
                 <h3 class="menu-title">Livrable</h3><!-- /.menu-title -->
