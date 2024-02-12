@@ -12,11 +12,11 @@ use Illuminate\Support\Facades\Hash;
 
 class TuteurController extends Controller
 {
-    public function index ()
-    {
-        return view('tuteur.index');
-    }
-    
+  public function index()
+  {
+    return view('tuteur.index');
+  }
+
   public function inscription()
   {
     return view('tuteur.inscription');
@@ -26,13 +26,13 @@ class TuteurController extends Controller
   {
     // Validation des données
     $request->validate([
-        'nom' => 'required|string|max:255',
-        'prenom' => 'required|string|max:255',
-        'contact' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-        'mdp' => 'required'
-      ]);
-      $tuteur = new Tuteur;
+      'nom' => 'required|string|max:255',
+      'prenom' => 'required|string|max:255',
+      'contact' => 'required|string|max:255',
+      'email' => 'required|email|max:255',
+      'mdp' => 'required'
+    ]);
+    $tuteur = new Tuteur;
     $tuteur->nom = $request->input('nom');
     $tuteur->prenom = $request->input('prenom');
     $tuteur->contact = $request->input('contact');
@@ -56,7 +56,7 @@ class TuteurController extends Controller
   public function tuteurEvalueEtudiant()
   {
     $tuteur_evalue_etudiants = TuteurEvalueEtudiant::all();
-    return view('tuteur.etudiant', compact('tuteur_evalue_etudiants')); ;
+    return view('tuteur.etudiant', compact('tuteur_evalue_etudiants'));;
   }
 
   public function traitementTuteurEvalueEtudiant(Request $request)
@@ -81,21 +81,21 @@ class TuteurController extends Controller
 
   public function traitementTuteurCreeGroupe(Request $request)
   {
-// Validation des données
-$request->validate([
-  'groupname' => 'required|string|max:255',
-  'specialty' => 'required|string|max:255',
-  'studentnumbers' => 'required|integer|max:20',
-  'tutorsname' => 'required|string|max:255'
-]);
+    // Validation des données
+    $request->validate([
+      'groupname' => 'required|string|max:255',
+      'specialty' => 'required|string|max:255',
+      'studentnumbers' => 'required|integer|max:20',
+      'tutorsname' => 'required|string|max:255'
+    ]);
 
-$tuteur_cree_groupe = new TuteurCreeGroupe;
-$tuteur_cree_groupe->nom_du_groupe = $request->input('groupname');
-$tuteur_cree_groupe->specialite = $request->input('specialty');
-$tuteur_cree_groupe->nombre_d_etudiants = $request->input('studentnumbers');
-$tuteur_cree_groupe->nom_du_tuteur = $request->input('tutorsname');
-$tuteur_cree_groupe->save();
- return back()->with("successAdd", 'Le groupe a été créé avec succès.');
+    $tuteur_cree_groupe = new TuteurCreeGroupe;
+    $tuteur_cree_groupe->nom_du_groupe = $request->input('groupname');
+    $tuteur_cree_groupe->specialite = $request->input('specialty');
+    $tuteur_cree_groupe->nombre_d_etudiants = $request->input('studentnumbers');
+    $tuteur_cree_groupe->nom_du_tuteur = $request->input('tutorsname');
+    $tuteur_cree_groupe->save();
+    return back()->with("successAdd", 'Le groupe a été créé avec succès.');
   }
 
   public function tuteurAttribueRole()
@@ -106,8 +106,8 @@ $tuteur_cree_groupe->save();
 
   public function traitementTuteurAttribueRole(Request $request)
   {
-     // Validation des données
-     $request->validate([
+    // Validation des données
+    $request->validate([
       'groupname' => 'required|string|max:255',
       'studentname' => 'required|string|max:255',
       'assignedrole' => 'required|string|max:255',
@@ -121,33 +121,30 @@ $tuteur_cree_groupe->save();
     return back()->with("successAdd", 'Le rôle a été attribué avec succès.');
   }
 
-public function tuteurRapport()
-{
-  $tuteur_rapports = TuteurRapport::all();
-  return view('tuteur.rapport', compact('tuteur_rapports'));
-}
+  public function tuteurRapport()
+  {
+    $tuteur_rapports = TuteurRapport::all();
+    return view('tuteur.rapport', compact('tuteur_rapports'));
+  }
 
-public function traitementTuteurRapport(Request $request)
-{
-  $request->validate([
-    'title' => 'required|string|max:255',
-    'file' => 'required|mimes:docx,xlsx,pptx,pdf|max:10000000'
-  ]);
+  public function traitementTuteurRapport(Request $request)
+  {
+    $request->validate([
+      'title' => 'required|string|max:255',
+      'file' => 'required|mimes:docx,xlsx,pptx,pdf|max:10000000'
+    ]);
 
-  $title = $request->input('title');
-  $file = $request->file('file');
-  
-  $fileName = $title . '_' . time() . '.' . $file->getClientOriginalExtension();
- 
-  $path = $file->storeAs('uploads', $fileName);
+    $title = $request->input('title');
+    $file = $request->file('file');
 
-  $tuteur_rapport = new TuteurRapport;
-  $tuteur_rapport->nom_du_rapport = $request->input('title');
-  $tuteur_rapport->file = $request->input('file');
+    $fileName = $title . '_' . time() . '.' . $file->getClientOriginalExtension();
 
-  return back()->with("successAdd", 'Votre rapport a été déposé avec succès.');
-}
+    $path = $file->storeAs('uploads', $fileName);
 
+    $tuteur_rapport = new TuteurRapport;
+    $tuteur_rapport->nom_du_rapport = $request->input('title');
+    $tuteur_rapport->file = $request->input('file');
 
-
+    return back()->with("successAdd", 'Votre rapport a été déposé avec succès.');
+  }
 }

@@ -1,3 +1,12 @@
+@extends('base')
+
+@section('title')
+    Connexion
+@endsection
+
+@section('content')
+    
+
 <main class="container mt-5">
   <section class="row justify-content-center">
     <article class="col-md-6">
@@ -26,7 +35,7 @@
     </article>
   </section>
 </main>
-
+@endsection
 
 
 

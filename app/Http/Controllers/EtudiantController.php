@@ -50,7 +50,7 @@ class EtudiantController extends Controller
 
     public function etudiantDashboard()
     {
-        return view('etudiant.dashboard'); 
+        return view('etudiant.dashboard');
     }
 
     public function etudiantEvalueMembre()
@@ -64,8 +64,8 @@ class EtudiantController extends Controller
         //Validation des données
         $request->validate([
             'nom' => 'required|string|max:255',
-      'specialite' => 'required|string|max:255',
-      'note' => 'required|string|max:20',
+            'specialite' => 'required|string|max:255',
+            'note' => 'required|string|max:20',
         ]);
         $etudiant_evalue_membre = new EtudiantEvalueMembre;
         $etudiant_evalue_membre->nom = $request->input('nom');
@@ -85,7 +85,7 @@ class EtudiantController extends Controller
     {
         //Validation des données
         $request->validate([[
-            'nom'=>'required|string|max:255',
+            'nom' => 'required|string|max:255',
             'note' => 'required|string|max:20',
         ]]);
 
@@ -105,25 +105,23 @@ class EtudiantController extends Controller
     public function traitementEtudiantRapport(Request $request)
     {
         //Validation des données
-        
-    $request->validate([
-        'title' => 'required|string|max:255',
-        'file' => 'required|mimes:docx,xlsx,pptx,sgl,pdf|max:10000000'
-      ]);
 
-      $title = $request->input('title');
-    $file = $request->file('file');
-    
-    $fileName = $title . '_' . time() . '.' . $file->getClientOriginalExtension();
-   
-    $path = $file->storeAs('uploads', $fileName);
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'file' => 'required|mimes:docx,xlsx,pptx,sgl,pdf|max:10000000'
+        ]);
 
-    $etudiant_rapport = new EtudiantRapport;
-    $etudiant_rapport->nom_du_rapport = $request->input('title');
-    $etudiant_rapport->file = $request->input('file');
+        $title = $request->input('title');
+        $file = $request->file('file');
 
-    return back()->with("successAdd", 'Votre rapport a été déposé.');
+        $fileName = $title . '_' . time() . '.' . $file->getClientOriginalExtension();
+
+        $path = $file->storeAs('uploads', $fileName);
+
+        $etudiant_rapport = new EtudiantRapport;
+        $etudiant_rapport->nom_du_rapport = $request->input('title');
+        $etudiant_rapport->file = $request->input('file');
+
+        return back()->with("successAdd", 'Votre rapport a été déposé.');
     }
-
-
 }

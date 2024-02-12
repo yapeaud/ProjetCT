@@ -1,3 +1,10 @@
+@extends('base')
+
+@section('title')
+Inscription
+@endsection
+
+@section('content')
 <main class="container mt-5">
     <section class="row justify-content-center">
       <article class="col-md-6">
@@ -28,7 +35,7 @@
             @endif --}}
             <form class="form-signin" method="POST" action="/internship/inscription">
               @csrf             
-              <div class="form-row">
+              
                 <div class="form-group">
                   <label for="nom">Nom :</label>
                   <input type="text" class="form-control" id="nom" placeholder="Entrez votre nom" name="nom">
@@ -37,7 +44,7 @@
                   <label for="prenom">Prénom :</label>
                   <input type="text" class="form-control" id="prenom" placeholder="Entrez votre prénom" name="prenom">
                 </div>
-              </div>
+           
               <div class="form-group">
                 <label for="contact">Contact :</label>
                 <input type="text" class="form-control" id="contact" placeholder="Entrez votre numéro de téléphone" name="contact">
@@ -59,3 +66,4 @@
       </article>
     </section>
 </main>
+@endsection
