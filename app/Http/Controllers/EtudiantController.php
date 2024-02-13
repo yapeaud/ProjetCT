@@ -9,7 +9,7 @@ use App\Models\EtudiantEvalueMembre;
 use App\Models\EtudiantEvalueTuteur;
 use Illuminate\Support\Facades\Hash;
 
-class EtudiantController extends Controller
+ class EtudiantController extends Controller
 {
     public function index()
     {

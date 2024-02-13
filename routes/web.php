@@ -2,6 +2,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\TuteurController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\PedagogieController;
